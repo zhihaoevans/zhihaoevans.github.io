@@ -1,0 +1,100 @@
+{
+  "name": "张志豪",
+  "title": "全栈开发工程师",
+  "bio": "热爱技术，专注于前端开发和用户体验设计。拥有5年以上的Web开发经验，擅长Vue.js、React、Node.js等技术栈。致力于创造优雅、高效的数字产品，让技术服务于生活。",
+  "avatar": "https://trae-api-sg.mchost.guru/api/ide/v1/text_to_image?prompt=professional%20developer%20portrait%2C%20clean%20background%2C%20modern%20style&image_size=square",
+  "email": "zhihao@example.com",
+  "location": "北京，中国",
+  "expertise": ["前端开发", "用户体验设计", "全栈开发", "技术架构"],
+  "social": {
+    "github": "https://github.com/zhihaoevans",
+    "twitter": "https://twitter.com/zhihaoevans",
+    "linkedin": "https://linkedin.com/in/zhihaoevans"
+  },
+  "skills": [
+    {
+      "name": "Vue.js",
+      "category": "前端开发",
+      "level": 95
+    },
+    {
+      "name": "React",
+      "category": "前端开发",
+      "level": 90
+    },
+    {
+      "name": "TypeScript",
+      "category": "前端开发",
+      "level": 88
+    },
+    {
+      "name": "Node.js",
+      "category": "后端开发",
+      "level": 85
+    },
+    {
+      "name": "Python",
+      "category": "后端开发",
+      "level": 80
+    },
+    {
+      "name": "UI/UX 设计",
+      "category": "设计",
+      "level": 75
+    },
+    {
+      "name": "Docker",
+      "category": "工具",
+      "level": 82
+    },
+    {
+      "name": "AWS",
+      "category": "工具",
+      "level": 78
+    }
+  ],
+  "experience": [
+    {
+      "position": "高级前端工程师",
+      "company": "字节跳动",
+      "period": "2022.03 - 至今",
+      "description": "负责公司核心产品的前端架构设计和开发，带领团队完成多个重要项目的技术升级。",
+      "achievements": [
+        "主导前端架构重构，性能提升40%",
+        "建立完善的组件库和开发规范",
+        "指导初级开发者，提升团队整体技术水平"
+      ]
+    },
+    {
+      "position": "前端工程师",
+      "company": "腾讯",
+      "period": "2020.06 - 2022.02",
+      "description": "参与微信小程序生态建设，负责开发者工具和平台功能的前端实现。",
+      "achievements": [
+        "开发微信小程序开发者工具核心功能",
+        "优化构建流程，提升开发效率30%",
+        "参与制定前端技术标准和最佳实践"
+      ]
+    },
+    {
+      "position": "Web开发工程师",
+      "company": "美团",
+      "period": "2019.07 - 2020.05",
+      "description": "负责美团外卖商家端的前端开发和维护，参与多个业务线的技术改进。",
+      "achievements": [
+        "重构商家端核心页面，用户体验显著提升",
+        "实现响应式设计，支持多端适配",
+        "建立自动化测试流程，bug率降低50%"
+      ]
+    }
+  ],
+  "education": [
+    {
+      "degree": "计算机科学与技术学士",
+      "school": "北京理工大学",
+      "major": "计算机科学与技术",
+      "period": "2015.09 - 2019.06"
+    }
+  ],
+  "hobbies": ["摄影", "旅行", "阅读", "音乐", "运动", "编程"]
+}
