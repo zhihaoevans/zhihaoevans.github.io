@@ -1,40 +1,25 @@
-import { ref, watchEffect, onMounted, computed } from 'vue'
+import { computed, ref } from 'vue'
 
 type Theme = 'light' | 'dark'
+const theme = ref<Theme>(document.documentElement.classList.contains('dark') ? 'dark' : 'light')
+let userChoice = false
+try { userChoice = ['light', 'dark'].includes(localStorage.getItem('theme') || '') } catch {}
+
+function applyTheme(value: Theme) {
+  theme.value = value
+  document.documentElement.classList.toggle('dark', value === 'dark')
+  document.documentElement.style.colorScheme = value
+}
+const systemTheme = window.matchMedia('(prefers-color-scheme: dark)')
+systemTheme.addEventListener('change', event => {
+  if (!userChoice) applyTheme(event.matches ? 'dark' : 'light')
+})
 
 export function useTheme() {
-  const theme = ref<Theme>('light')
-
-  const getPreferredTheme = (): Theme => {
-    const saved = localStorage.getItem('theme') as Theme | null
-    if (saved === 'light' || saved === 'dark') return saved
-    return window.matchMedia('(prefers-color-scheme: dark)').matches
-      ? 'dark'
-      : 'light'
-  }
-
-  const applyTheme = (t: Theme) => {
-    document.documentElement.classList.remove('light', 'dark')
-    document.documentElement.classList.add(t)
-    localStorage.setItem('theme', t)
-  }
-
   const toggleTheme = () => {
-    theme.value = theme.value === 'light' ? 'dark' : 'light'
+    userChoice = true
+    applyTheme(theme.value === 'dark' ? 'light' : 'dark')
+    try { localStorage.setItem('theme', theme.value) } catch {}
   }
-
-  onMounted(() => {
-    theme.value = getPreferredTheme()
-    applyTheme(theme.value)
-  })
-
-  watchEffect(() => {
-    applyTheme(theme.value)
-  })
-
-  return {
-    theme,
-    toggleTheme,
-    isDark: computed(() => theme.value === 'dark'),
-  }
+  return { theme, toggleTheme, isDark: computed(() => theme.value === 'dark') }
 }

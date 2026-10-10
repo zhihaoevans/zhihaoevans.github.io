@@ -1,20 +1,21 @@
 <script setup lang="ts">
 import { RouterView } from 'vue-router'
-import { createHead } from '@vueuse/head'
+
 import NavBar from './components/NavBar.vue'
 import Footer from './components/Footer.vue'
+const focusMain = () => document.getElementById('main-content')?.focus()
 
-// 初始化 head 管理
-const head = createHead()
+
 </script>
 
 <template>
-  <div class="min-h-screen bg-gray-50 flex flex-col">
+  <div class="min-h-screen bg-gray-50 dark:bg-slate-950 flex flex-col">
     <!-- 导航栏 -->
     <NavBar />
     
     <!-- 主要内容区域 -->
-    <main class="flex-1">
+    <a href="#main-content" @click.prevent="focusMain" class="skip-link">跳到主要内容</a>
+    <main id="main-content" tabindex="-1" class="flex-1">
       <RouterView />
     </main>
     
@@ -48,7 +49,7 @@ html {
 .prose h4,
 .prose h5,
 .prose h6 {
-  @apply font-bold text-gray-900 mt-8 mb-4;
+  @apply font-bold text-gray-900 dark:text-slate-100 mt-8 mb-4;
 }
 
 .prose h1 {
@@ -64,7 +65,7 @@ html {
 }
 
 .prose p {
-  @apply mb-4 leading-relaxed text-gray-700;
+  @apply mb-4 leading-relaxed text-gray-700 dark:text-slate-300;
 }
 
 .prose ul,
@@ -77,11 +78,11 @@ html {
 }
 
 .prose blockquote {
-  @apply border-l-4 border-blue-500 pl-4 italic text-gray-600 my-4;
+  @apply border-l-4 border-blue-500 pl-4 italic text-gray-600 dark:text-slate-300 my-4;
 }
 
 .prose a {
-  @apply text-blue-600 hover:text-blue-800 underline;
+  @apply text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 underline;
 }
 
 .prose img {
@@ -89,15 +90,15 @@ html {
 }
 
 .prose table {
-  @apply w-full border-collapse border border-gray-300 my-6;
+  @apply w-full border-collapse border border-gray-300 dark:border-slate-700 my-6;
 }
 
 .prose th,
 .prose td {
-  @apply border border-gray-300 px-4 py-2;
+  @apply border border-gray-300 dark:border-slate-700 px-4 py-2;
 }
 
 .prose th {
-  @apply bg-gray-100 font-semibold;
+  @apply bg-gray-100 dark:bg-slate-800 font-semibold;
 }
 </style>

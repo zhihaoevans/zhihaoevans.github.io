@@ -2,8 +2,8 @@
   <div class="container mx-auto px-4 py-8">
     <!-- 页面标题 -->
     <div class="text-center mb-12">
-      <h1 class="text-4xl font-bold text-gray-900 mb-4">博客文章</h1>
-      <p class="text-gray-600 max-w-2xl mx-auto">
+      <h1 class="text-4xl font-bold text-gray-900 dark:text-slate-100 mb-4">博客文章</h1>
+      <p class="text-gray-600 dark:text-slate-300 max-w-2xl mx-auto">
         记录我的技术学习历程、项目经验和思考感悟
       </p>
     </div>
@@ -14,12 +14,13 @@
         <!-- 搜索框 -->
         <div class="flex-1">
           <div class="relative">
-            <Search class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+            <Search class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 dark:text-slate-400 w-5 h-5" />
             <input
               v-model="searchQuery"
               type="text"
+              aria-label="搜索技术笔记"
               placeholder="搜索文章标题、内容或标签..."
-              class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              class="w-full pl-10 pr-4 py-2 border border-gray-300 dark:border-slate-700 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
             >
           </div>
         </div>
@@ -27,7 +28,8 @@
         <!-- 分类筛选 -->
         <select
           v-model="selectedCategory"
-          class="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+          aria-label="按分类筛选笔记"
+          class="px-4 py-2 border border-gray-300 dark:border-slate-700 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
         >
           <option value="">所有分类</option>
           <option v-for="category in categories" :key="category" :value="category">
@@ -46,7 +48,7 @@
             'px-3 py-1 text-sm rounded-full transition-colors',
             selectedTags.includes(tag)
               ? 'bg-blue-600 text-white'
-              : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+              : 'bg-gray-200 dark:bg-slate-700 text-gray-700 dark:text-slate-300 hover:bg-gray-300'
           ]"
         >
           {{ tag }}
@@ -57,11 +59,11 @@
     <!-- 文章列表 -->
     <div class="space-y-8">
       <div v-if="filteredArticles.length === 0" class="text-center py-12">
-        <div class="text-gray-400 mb-4">
+        <div class="text-gray-400 dark:text-slate-400 mb-4">
           <FileText class="w-16 h-16 mx-auto" />
         </div>
-        <h3 class="text-xl font-semibold text-gray-600 mb-2">没有找到文章</h3>
-        <p class="text-gray-500">尝试调整搜索条件或筛选器</p>
+        <h3 class="text-xl font-semibold text-gray-600 dark:text-slate-300 mb-2">没有找到文章</h3>
+        <p class="text-gray-500 dark:text-slate-400">尝试调整搜索条件或筛选器</p>
       </div>
 
       <ArticleCard
@@ -78,7 +80,7 @@
         <button
           @click="currentPage = Math.max(1, currentPage - 1)"
           :disabled="currentPage === 1"
-          class="px-3 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-l-md hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
+          class="px-3 py-2 text-sm font-medium text-gray-500 dark:text-slate-400 bg-white dark:bg-slate-900 border border-gray-300 dark:border-slate-700 rounded-l-md hover:bg-gray-50 dark:hover:bg-slate-800 disabled:opacity-50 disabled:cursor-not-allowed"
         >
           <ChevronLeft class="w-4 h-4" />
         </button>
@@ -90,8 +92,8 @@
           :class="[
             'px-3 py-2 text-sm font-medium border',
             page === currentPage
-              ? 'text-blue-600 bg-blue-50 border-blue-500'
-              : 'text-gray-500 bg-white border-gray-300 hover:bg-gray-50'
+              ? 'text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-950 border-blue-500'
+              : 'text-gray-500 dark:text-slate-400 bg-white dark:bg-slate-900 border-gray-300 dark:border-slate-700 hover:bg-gray-50 dark:hover:bg-slate-800'
           ]"
         >
           {{ page }}
@@ -100,7 +102,7 @@
         <button
           @click="currentPage = Math.min(totalPages, currentPage + 1)"
           :disabled="currentPage === totalPages"
-          class="px-3 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-r-md hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
+          class="px-3 py-2 text-sm font-medium text-gray-500 dark:text-slate-400 bg-white dark:bg-slate-900 border border-gray-300 dark:border-slate-700 rounded-r-md hover:bg-gray-50 dark:hover:bg-slate-800 disabled:opacity-50 disabled:cursor-not-allowed"
         >
           <ChevronRight class="w-4 h-4" />
         </button>

@@ -1,10 +1,10 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
-import BlogView from '../views/BlogView.vue'
-import ArticleView from '../views/ArticleView.vue'
-import AboutView from '../views/AboutView.vue'
-import ProjectsView from '../views/ProjectsView.vue'
-import NotFoundView from '../views/NotFoundView.vue'
+const BlogView = () => import('../views/BlogView.vue')
+const ArticleView = () => import('../views/ArticleView.vue')
+const AboutView = () => import('../views/AboutView.vue')
+const ProjectsView = () => import('../views/ProjectsView.vue')
+const NotFoundView = () => import('../views/NotFoundView.vue')
 
 const router = createRouter({
   history: createWebHashHistory(import.meta.env.BASE_URL),
@@ -77,3 +77,4 @@ router.beforeEach((to, from, next) => {
 })
 
 export default router
+

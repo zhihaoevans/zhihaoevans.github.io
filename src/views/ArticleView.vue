@@ -6,16 +6,16 @@
         <div class="mb-4">
           <router-link 
             to="/blog"
-            class="inline-flex items-center text-blue-600 hover:text-blue-800 text-sm font-medium"
+            class="inline-flex items-center text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 text-sm font-medium"
           >
             <ArrowLeft class="w-4 h-4 mr-2" />
             返回博客列表
           </router-link>
         </div>
         
-        <h1 class="text-4xl font-bold text-gray-900 mb-4">{{ article.title }}</h1>
+        <h1 class="text-4xl font-bold text-gray-900 dark:text-slate-100 mb-4">{{ article.title }}</h1>
         
-        <div class="flex flex-wrap items-center gap-4 text-sm text-gray-600 mb-6">
+        <div class="flex flex-wrap items-center gap-4 text-sm text-gray-600 dark:text-slate-300 mb-6">
           <div class="flex items-center">
             <Calendar class="w-4 h-4 mr-2" />
             {{ formatDate(article.publishDate) }}
@@ -34,19 +34,19 @@
           <span
             v-for="tag in article.tags"
             :key="tag"
-            class="px-3 py-1 bg-blue-100 text-blue-800 text-sm rounded-full"
+            class="px-3 py-1 bg-blue-100 dark:bg-blue-950 text-blue-800 dark:text-blue-300 text-sm rounded-full"
           >
             {{ tag }}
           </span>
         </div>
         
-        <p class="text-lg text-gray-600 leading-relaxed">{{ article.excerpt }}</p>
+        <p class="text-lg text-gray-600 dark:text-slate-300 leading-relaxed">{{ article.excerpt }}</p>
       </header>
 
       <!-- 文章内容 -->
       <div class="flex gap-8">
         <!-- 主要内容 -->
-        <div class="flex-1">
+        <div class="flex-1 min-w-0">
           <div 
             v-if="article.content"
             class="prose prose-lg max-w-none"
@@ -54,24 +54,25 @@
           ></div>
           <div v-else class="text-center py-12">
             <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
-            <p class="mt-4 text-gray-600">加载文章内容中...</p>
+            <p class="mt-4 text-gray-600 dark:text-slate-300">加载文章内容中...</p>
           </div>
         </div>
 
         <!-- 目录导航 -->
         <aside class="hidden lg:block w-64 flex-shrink-0">
-          <div class="sticky top-8">
-            <div v-if="toc.length > 0" class="bg-gray-50 rounded-lg p-4">
-              <h3 class="font-semibold text-gray-900 mb-3">目录</h3>
+          <div class="sticky top-24">
+            <div v-if="toc.length > 0" class="bg-gray-50 dark:bg-slate-950 rounded-lg p-4">
+              <h3 class="font-semibold text-gray-900 dark:text-slate-100 mb-3">目录</h3>
               <nav class="space-y-1">
                 <a
                   v-for="item in toc"
                   :key="item.anchor"
                   :href="`#${item.anchor}`"
+                  @click.prevent="scrollToHeading(item.anchor)"
                   :class="[
                     'block text-sm hover:text-blue-600 transition-colors',
-                    item.level === 1 ? 'font-medium text-gray-900' : 
-                    item.level === 2 ? 'pl-4 text-gray-700' : 'pl-8 text-gray-600'
+                    item.level === 1 ? 'font-medium text-gray-900 dark:text-slate-100' : 
+                    item.level === 2 ? 'pl-4 text-gray-700 dark:text-slate-300' : 'pl-8 text-gray-600 dark:text-slate-300'
                   ]"
                 >
                   {{ item.title }}
@@ -83,25 +84,25 @@
       </div>
 
       <!-- 文章底部 -->
-      <footer class="mt-12 pt-8 border-t border-gray-200">
+      <footer class="mt-12 pt-8 border-t border-gray-200 dark:border-slate-700">
         <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
-          <div class="text-sm text-gray-600">
+          <div class="text-sm text-gray-600 dark:text-slate-300">
             <p>发布于 {{ formatDate(article.publishDate) }}</p>
             <p v-if="article.updateDate">更新于 {{ formatDate(article.updateDate) }}</p>
           </div>
           
           <div class="flex items-center space-x-4">
-            <span class="text-sm text-gray-600">分享到:</span>
+            <span class="text-sm text-gray-600 dark:text-slate-300">分享到:</span>
             <button
               @click="shareToTwitter"
-              class="text-gray-400 hover:text-blue-500 transition-colors"
+              class="text-gray-400 dark:text-slate-400 hover:text-blue-500 transition-colors"
               title="分享到 Twitter"
             >
               <Twitter class="w-5 h-5" />
             </button>
             <button
               @click="copyLink"
-              class="text-gray-400 hover:text-blue-500 transition-colors"
+              class="text-gray-400 dark:text-slate-400 hover:text-blue-500 transition-colors"
               title="复制链接"
             >
               <Link class="w-5 h-5" />
@@ -113,7 +114,7 @@
 
     <!-- 相关文章推荐 -->
     <section class="max-w-4xl mx-auto mt-16">
-      <h2 class="text-2xl font-bold text-gray-900 mb-8">相关文章</h2>
+      <h2 class="text-2xl font-bold text-gray-900 dark:text-slate-100 mb-8">相关文章</h2>
       <div class="grid md:grid-cols-2 gap-6">
         <ArticleCard
           v-for="relatedArticle in relatedArticles"
@@ -127,9 +128,9 @@
   <!-- 文章未找到 -->
   <div v-else class="container mx-auto px-4 py-16 text-center">
     <div class="max-w-md mx-auto">
-      <FileX class="w-16 h-16 text-gray-400 mx-auto mb-4" />
-      <h1 class="text-2xl font-bold text-gray-900 mb-2">文章未找到</h1>
-      <p class="text-gray-600 mb-6">抱歉，您访问的文章不存在或已被删除。</p>
+      <FileX class="w-16 h-16 text-gray-400 dark:text-slate-400 mx-auto mb-4" />
+      <h1 class="text-2xl font-bold text-gray-900 dark:text-slate-100 mb-2">文章未找到</h1>
+      <p class="text-gray-600 dark:text-slate-300 mb-6">抱歉，您访问的文章不存在或已被删除。</p>
       <router-link 
         to="/blog"
         class="inline-flex items-center bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors"
@@ -188,6 +189,7 @@ const relatedArticles = computed(() => {
 })
 
 // 方法
+const scrollToHeading = (anchor: string) => document.getElementById(anchor)?.scrollIntoView({ block: 'start' })
 const loadArticle = async (slug: string) => {
   loading.value = true
   try {

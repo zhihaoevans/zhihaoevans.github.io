@@ -1,5 +1,5 @@
 <template>
-  <div class="min-h-screen flex items-center justify-center bg-gray-50">
+  <div class="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-slate-950">
     <div class="text-center">
       <div class="mb-8">
         <div class="relative">
@@ -7,14 +7,14 @@
           <h1 class="text-9xl font-bold text-gray-200 select-none">404</h1>
           <!-- 搜索图标 -->
           <div class="absolute inset-0 flex items-center justify-center">
-            <Search class="w-24 h-24 text-gray-400" />
+            <Search class="w-24 h-24 text-gray-400 dark:text-slate-400" />
           </div>
         </div>
       </div>
       
       <div class="max-w-md mx-auto">
-        <h2 class="text-2xl font-bold text-gray-900 mb-4">页面未找到</h2>
-        <p class="text-gray-600 mb-8">
+        <h2 class="text-2xl font-bold text-gray-900 dark:text-slate-100 mb-4">页面未找到</h2>
+        <p class="text-gray-600 dark:text-slate-300 mb-8">
           抱歉，您访问的页面不存在。可能是链接错误或页面已被移动。
         </p>
         
@@ -30,21 +30,21 @@
           <div class="flex justify-center space-x-4">
             <router-link 
               to="/blog"
-              class="text-blue-600 hover:text-blue-800 transition-colors"
+              class="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 transition-colors"
             >
               博客文章
             </router-link>
             <span class="text-gray-300">|</span>
             <router-link 
               to="/projects"
-              class="text-blue-600 hover:text-blue-800 transition-colors"
+              class="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 transition-colors"
             >
               项目展示
             </router-link>
             <span class="text-gray-300">|</span>
             <router-link 
               to="/about"
-              class="text-blue-600 hover:text-blue-800 transition-colors"
+              class="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 transition-colors"
             >
               关于我
             </router-link>

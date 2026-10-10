@@ -1,95 +1,25 @@
 <template>
-  <nav class="bg-white shadow-sm border-b border-gray-200 sticky top-0 z-50">
-    <div class="container mx-auto px-4">
-      <div class="flex justify-between items-center h-16">
-        <!-- Logo -->
-        <router-link 
-          to="/" 
-          class="flex items-center space-x-2 text-xl font-bold text-gray-900 hover:text-blue-600 transition-colors"
-        >
-          <div class="w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
-            <span class="text-white font-bold text-sm">Z</span>
-          </div>
-          <span>xzh · Dev Notes</span>
-        </router-link>
-
-        <!-- Desktop Navigation -->
-        <div class="hidden md:flex items-center space-x-8">
-          <router-link
-            v-for="item in navItems"
-            :key="item.path"
-            :to="item.path"
-            :class="[
-              'text-gray-700 hover:text-blue-600 transition-colors font-medium',
-              $route.path === item.path ? 'text-blue-600' : ''
-            ]"
-          >
-            {{ item.name }}
-          </router-link>
-        </div>
-
-        <!-- Mobile Menu Button -->
-        <button
-          @click="toggleMobileMenu"
-          class="md:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors"
-          :aria-expanded="isMobileMenuOpen"
-          aria-label="Toggle navigation menu"
-        >
-          <Menu v-if="!isMobileMenuOpen" class="w-6 h-6 text-gray-700" />
-          <X v-else class="w-6 h-6 text-gray-700" />
-        </button>
+  <header class="site-header">
+    <nav class="site-shell nav-layout" aria-label="主导航">
+      <router-link to="/" class="brand"><span class="brand-mark">&lt;/&gt;</span><span>xzh<span class="brand-sub"> / dev notes</span></span></router-link>
+      <div class="desktop-links"><router-link v-for="item in items" :key="item.path" :to="item.path" :aria-current="$route.path === item.path ? 'page' : undefined" class="nav-link">{{ item.name }}</router-link></div>
+      <div class="nav-actions">
+        <button @click="toggleTheme" class="icon-button" :aria-label="isDark ? '切换为浅色主题' : '切换为深色主题'" :title="isDark ? '切换为浅色主题' : '切换为深色主题'" :aria-pressed="isDark"><Sun v-if="isDark" :size="19" /><Moon v-else :size="19" /></button>
+        <a href="https://github.com/zhihaoevans" target="_blank" rel="noopener noreferrer" class="icon-button github-nav" aria-label="访问 GitHub"><Github :size="19" /></a>
+        <button class="icon-button menu-button" @click="open = !open" :aria-expanded="open" aria-controls="mobile-nav" :aria-label="open ? '关闭菜单' : '打开菜单'"><X v-if="open" :size="21" /><Menu v-else :size="21" /></button>
       </div>
-
-      <!-- Mobile Navigation -->
-      <div
-        v-if="isMobileMenuOpen"
-        class="md:hidden border-t border-gray-200 py-4"
-      >
-        <div class="space-y-2">
-          <router-link
-            v-for="item in navItems"
-            :key="item.path"
-            :to="item.path"
-            @click="closeMobileMenu"
-            :class="[
-              'block px-4 py-2 text-gray-700 hover:text-blue-600 hover:bg-gray-50 rounded-lg transition-colors font-medium',
-              $route.path === item.path ? 'text-blue-600 bg-blue-50' : ''
-            ]"
-          >
-            {{ item.name }}
-          </router-link>
-        </div>
-      </div>
-    </div>
-  </nav>
+    </nav>
+    <nav v-if="open" id="mobile-nav" class="mobile-links site-shell" aria-label="移动端导航"><router-link v-for="item in items" :key="item.path" :to="item.path" @click="open = false" class="nav-link" :aria-current="$route.path === item.path ? 'page' : undefined">{{ item.name }}</router-link></nav>
+  </header>
 </template>
-
 <script setup lang="ts">
 import { ref, watch } from 'vue'
 import { useRoute } from 'vue-router'
-import { Menu, X } from 'lucide-vue-next'
-import type { NavItem } from '@/types'
-
+import { Sun, Moon, Github, Menu, X } from 'lucide-vue-next'
+import { useTheme } from '@/composables/useTheme'
+const { isDark, toggleTheme } = useTheme()
+const open = ref(false)
 const route = useRoute()
-const isMobileMenuOpen = ref(false)
-
-const navItems: NavItem[] = [
-  { name: '首页', path: '/' },
-  { name: '博客', path: '/blog' },
-  { name: '项目', path: '/projects' },
-  { name: '关于', path: '/about' }
-]
-
-const toggleMobileMenu = () => {
-  isMobileMenuOpen.value = !isMobileMenuOpen.value
-}
-
-const closeMobileMenu = () => {
-  isMobileMenuOpen.value = false
-}
-
-// 路由变化时关闭移动端菜单
-watch(route, () => {
-  closeMobileMenu()
-})
+watch(() => route.fullPath, () => { open.value = false })
+const items = [{ name: '首页', path: '/' }, { name: '项目', path: '/projects' }, { name: '笔记', path: '/blog' }, { name: '关于', path: '/about' }]
 </script>

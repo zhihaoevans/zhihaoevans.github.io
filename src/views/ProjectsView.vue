@@ -2,8 +2,8 @@
   <div class="container mx-auto px-4 py-8">
     <!-- 页面标题 -->
     <div class="text-center mb-12">
-      <h1 class="text-4xl font-bold text-gray-900 mb-4">项目展示</h1>
-      <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+      <h1 class="text-4xl font-bold text-gray-900 dark:text-slate-100 mb-4">项目展示</h1>
+      <p class="text-lg text-gray-600 dark:text-slate-300 max-w-2xl mx-auto">
         从公开仓库中精选：多语言学习、开发工具、网络协议资料和个人网站
       </p>
     </div>
@@ -17,7 +17,7 @@
             'px-4 py-2 rounded-full text-sm font-medium transition-colors',
             selectedCategory === '' 
               ? 'bg-blue-600 text-white' 
-              : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+              : 'bg-gray-100 dark:bg-slate-800 text-gray-700 dark:text-slate-300 hover:bg-gray-200 dark:hover:bg-slate-700'
           ]"
         >
           全部
@@ -30,7 +30,7 @@
             'px-4 py-2 rounded-full text-sm font-medium transition-colors',
             selectedCategory === category 
               ? 'bg-blue-600 text-white' 
-              : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+              : 'bg-gray-100 dark:bg-slate-800 text-gray-700 dark:text-slate-300 hover:bg-gray-200 dark:hover:bg-slate-700'
           ]"
         >
           {{ category }}
@@ -44,24 +44,24 @@
         v-for="project in filteredProjects"
         :key="project.id"
         :project="project"
-        class="transform hover:scale-105 transition-transform duration-200"
+        class="transform hover:-translate-y-1 transition-transform duration-200"
       />
     </div>
 
     <!-- 空状态 -->
     <div v-else-if="projects.length === 0" class="text-center py-12">
       <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
-      <p class="mt-4 text-gray-600">加载项目中...</p>
+      <p class="mt-4 text-gray-600 dark:text-slate-300">加载项目中...</p>
     </div>
 
     <div v-else class="text-center py-12">
-      <Folder class="w-16 h-16 text-gray-400 mx-auto mb-4" />
-      <h3 class="text-xl font-semibold text-gray-900 mb-2">暂无相关项目</h3>
-      <p class="text-gray-600">该分类下暂时没有项目</p>
+      <Folder class="w-16 h-16 text-gray-400 dark:text-slate-400 mx-auto mb-4" />
+      <h3 class="text-xl font-semibold text-gray-900 dark:text-slate-100 mb-2">暂无相关项目</h3>
+      <p class="text-gray-600 dark:text-slate-300">该分类下暂时没有项目</p>
     </div>
 
     <!-- 统计信息 -->
-    <div class="mt-16 bg-gradient-to-r from-blue-500 to-purple-600 rounded-2xl p-8 text-white">
+    <div class="mt-16 project-summary rounded-2xl p-8 text-white">
       <div class="text-center mb-8">
         <h2 class="text-2xl font-bold mb-2">项目统计</h2>
         <p class="text-blue-100">当前展示的公开仓库</p>
@@ -88,8 +88,8 @@
     </div>
 
     <!-- 技术栈云图 -->
-    <div class="mt-16 bg-white rounded-2xl shadow-lg p-8">
-      <h2 class="text-2xl font-bold text-gray-900 mb-8 text-center">技术栈</h2>
+    <div class="mt-16 bg-white dark:bg-slate-900 rounded-2xl shadow-lg p-8">
+      <h2 class="text-2xl font-bold text-gray-900 dark:text-slate-100 mb-8 text-center">技术栈</h2>
       <div class="flex flex-wrap justify-center gap-3">
         <span
           v-for="tech in allTechnologies"
@@ -151,7 +151,7 @@ const getTechColor = (count: number) => {
   if (count >= 5) return 'bg-red-100 text-red-800'
   if (count >= 3) return 'bg-orange-100 text-orange-800'
   if (count >= 2) return 'bg-yellow-100 text-yellow-800'
-  return 'bg-blue-100 text-blue-800'
+  return 'bg-blue-100 dark:bg-blue-950 text-blue-800 dark:text-blue-300'
 }
 
 onMounted(() => {
