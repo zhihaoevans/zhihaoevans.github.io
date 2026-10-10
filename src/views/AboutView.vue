@@ -76,16 +76,16 @@
                   <p class="text-gray-600 leading-relaxed">{{ profile.bio }}</p>
                 </div>
 
-                <div>
+                <div v-if="profile.email || profile.location">
                   <h3 class="text-xl font-semibold text-gray-900 mb-3">联系方式</h3>
                   <div class="space-y-2">
-                    <div class="flex items-center text-gray-600">
+                    <div v-if="profile.email" class="flex items-center text-gray-600">
                       <Mail class="w-5 h-5 mr-3 text-gray-400" />
                       <a :href="`mailto:${profile.email}`" class="hover:text-blue-600 transition-colors">
                         {{ profile.email }}
                       </a>
                     </div>
-                    <div class="flex items-center text-gray-600">
+                    <div v-if="profile.location" class="flex items-center text-gray-600">
                       <MapPin class="w-5 h-5 mr-3 text-gray-400" />
                       <span>{{ profile.location }}</span>
                     </div>
@@ -128,7 +128,7 @@
                 </div>
               </div>
               
-              <div class="mb-2">
+              <div v-if="skill.level !== undefined" class="mb-2">
                 <div class="flex justify-between text-sm text-gray-600 mb-1">
                   <span>熟练度</span>
                   <span>{{ skill.level }}%</span>
@@ -145,7 +145,7 @@
         </section>
 
         <!-- 工作经历 -->
-        <section class="bg-white rounded-2xl shadow-lg p-8">
+        <section v-if="profile.experience?.length" class="bg-white rounded-2xl shadow-lg p-8">
           <h2 class="text-2xl font-bold text-gray-900 mb-8 text-center">工作经历</h2>
           <div class="space-y-8">
             <div
@@ -178,7 +178,7 @@
         </section>
 
         <!-- 教育背景 -->
-        <section class="bg-white rounded-2xl shadow-lg p-8">
+        <section v-if="profile.education?.length" class="bg-white rounded-2xl shadow-lg p-8">
           <h2 class="text-2xl font-bold text-gray-900 mb-8 text-center">教育背景</h2>
           <div class="space-y-6">
             <div
@@ -199,7 +199,7 @@
         </section>
 
         <!-- 兴趣爱好 -->
-        <section class="bg-white rounded-2xl shadow-lg p-8">
+        <section v-if="profile.hobbies?.length" class="bg-white rounded-2xl shadow-lg p-8">
           <h2 class="text-2xl font-bold text-gray-900 mb-8 text-center">兴趣爱好</h2>
           <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
             <div
@@ -244,7 +244,7 @@ import { useData } from '@/composables/useData'
 const { profile, loadProfile } = useData()
 
 // 获取技能图标
-const getSkillIcon = (category: string) => {
+const getSkillIcon = (category = '') => {
   const icons: Record<string, any> = {
     frontend: Code,
     backend: Database,

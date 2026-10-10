@@ -10,14 +10,14 @@
             class="w-32 h-32 rounded-full mx-auto mb-6 border-4 border-white shadow-lg"
           >
           <TypewriterText 
-            :text="profile?.name || '张志豪'"
+            :text="profile?.name || 'xzh'"
             class-name="text-4xl md:text-6xl font-bold mb-4"
           />
           <p class="text-xl md:text-2xl mb-6 opacity-90">
-            {{ profile?.title || '前端开发工程师' }}
+            {{ profile?.title || 'Linux / C++ 工程师' }}
           </p>
           <p class="text-lg max-w-2xl mx-auto opacity-80">
-            {{ profile?.bio || '热爱技术，专注于现代前端开发' }}
+            {{ profile?.bio || '研究系统底层，用 AI 辅助开发实用工具' }}
           </p>
         </div>
         
@@ -26,7 +26,7 @@
           <a 
             v-if="profile?.social?.github"
             :href="profile.social.github"
-            target="_blank"
+            target="_blank" rel="noopener noreferrer"
             class="text-white hover:text-gray-200 transition-colors"
           >
             <Github class="w-6 h-6" />
@@ -34,7 +34,7 @@
           <a 
             v-if="profile?.social?.linkedin"
             :href="profile.social.linkedin"
-            target="_blank"
+            target="_blank" rel="noopener noreferrer"
             class="text-white hover:text-gray-200 transition-colors"
           >
             <Linkedin class="w-6 h-6" />
@@ -42,7 +42,7 @@
           <a 
             v-if="profile?.social?.twitter"
             :href="profile.social.twitter"
-            target="_blank"
+            target="_blank" rel="noopener noreferrer"
             class="text-white hover:text-gray-200 transition-colors"
           >
             <Twitter class="w-6 h-6" />
@@ -59,16 +59,16 @@
         <!-- CTA 按钮 -->
         <div class="space-x-4">
           <router-link 
-            to="/blog"
+            to="/projects"
             class="inline-block bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors"
           >
-            查看博客
+            浏览开源项目
           </router-link>
           <router-link 
-            to="/projects"
+            to="/about"
             class="inline-block border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-blue-600 transition-colors"
           >
-            我的项目
+            了解我
           </router-link>
         </div>
       </div>
@@ -80,7 +80,7 @@
         <div class="text-center mb-12">
           <h2 class="text-3xl font-bold text-gray-900 mb-4">最新文章</h2>
           <p class="text-gray-600 max-w-2xl mx-auto">
-            分享我在前端开发、技术学习和项目实践中的心得体会
+            记录技术学习与项目实践
           </p>
         </div>
         
@@ -110,7 +110,7 @@
         <div class="text-center mb-12">
           <h2 class="text-3xl font-bold text-gray-900 mb-4">技能专长</h2>
           <p class="text-gray-600 max-w-2xl mx-auto">
-            我专注于现代前端技术栈，持续学习和实践最新的开发技术
+            从 Linux 与网络工程出发，探索 AI 辅助开发与独立产品
           </p>
         </div>
         
@@ -122,9 +122,9 @@
           >
             <div class="flex justify-between items-center mb-2">
               <span class="font-semibold text-gray-900">{{ skill.name }}</span>
-              <span class="text-sm text-gray-500">{{ skill.level }}%</span>
+              <span class="text-sm text-gray-500">{{ skill.category }}</span>
             </div>
-            <div class="w-full bg-gray-200 rounded-full h-2">
+            <div v-if="skill.level !== undefined" class="w-full bg-gray-200 rounded-full h-2">
               <div 
                 class="bg-blue-600 h-2 rounded-full transition-all duration-500"
                 :style="{ width: `${skill.level}%` }"
@@ -141,7 +141,7 @@
         <div class="text-center mb-12">
           <h2 class="text-3xl font-bold text-gray-900 mb-4">精选项目</h2>
           <p class="text-gray-600 max-w-2xl mx-auto">
-            展示我参与开发的一些有趣项目和作品
+            可运行示例、开发环境配置与网络协议资料
           </p>
         </div>
         
@@ -188,8 +188,8 @@ const {
 // SEO设置
 useSEO({
   title: '首页',
-  description: '张志豪的个人博客 - 前端开发者，分享技术见解和项目经验',
-  keywords: '张志豪,前端开发,Vue.js,React,TypeScript,个人博客,技术分享',
+  description: 'xzh的个人网站 - Linux / C++、网络工程与 AI 独立开发',
+  keywords: 'xzh,Linux,C++,DPDK,AI辅助开发,独立开发,开源项目',
   url: '/'
 })
 

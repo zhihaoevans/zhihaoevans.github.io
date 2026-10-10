@@ -51,7 +51,7 @@ export interface Profile {
   };
   skills: {
     name: string;
-    level: number;
+    level?: number;
     category?: string;
   }[];
   expertise?: string[];
@@ -77,7 +77,7 @@ export interface Profile {
 // 技能类型定义
 export interface Skill {
   name: string;
-  level: number;
+  level?: number;
 }
 
 // 社交媒体类型定义

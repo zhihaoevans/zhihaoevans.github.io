@@ -8,10 +8,10 @@
             <div class="w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
               <span class="text-white font-bold text-sm">Z</span>
             </div>
-            <span class="text-xl font-bold">ZhiHao's Blog</span>
+            <span class="text-xl font-bold">xzh · Dev Notes</span>
           </div>
           <p class="text-gray-400 mb-6 max-w-md">
-            分享技术见解，记录成长历程。专注于前端开发、用户体验设计和技术创新。
+            记录 Linux、C/C++ 和网络工程实践，探索 AI 辅助开发与独立产品。
           </p>
           
           <!-- 社交链接 -->
@@ -65,12 +65,10 @@
       <div class="border-t border-gray-800 mt-8 pt-8">
         <div class="flex flex-col md:flex-row justify-between items-center">
           <div class="text-gray-400 text-sm mb-4 md:mb-0">
-            © {{ currentYear }} ZhiHao's Blog. All rights reserved.
+            © {{ currentYear }} xzh · Dev Notes. All rights reserved.
           </div>
           
           <div class="flex items-center space-x-6 text-sm text-gray-400">
-            <a href="#" class="hover:text-white transition-colors">隐私政策</a>
-            <a href="#" class="hover:text-white transition-colors">使用条款</a>
             <div class="flex items-center">
               <Heart class="w-4 h-4 mr-1 text-red-500" />
               <span>Made with Vue.js</span>
@@ -92,26 +90,7 @@ const { recentArticles } = useData()
 const currentYear = computed(() => new Date().getFullYear())
 
 const socialLinks = [
-  {
-    name: 'GitHub',
-    url: 'https://github.com/zhihaoevans',
-    icon: Github
-  },
-  {
-    name: 'Twitter',
-    url: 'https://twitter.com/zhihaoevans',
-    icon: Twitter
-  },
-  {
-    name: 'LinkedIn',
-    url: 'https://linkedin.com/in/zhihaoevans',
-    icon: Linkedin
-  },
-  {
-    name: 'Email',
-    url: 'mailto:zhihao@example.com',
-    icon: Mail
-  }
+  { name: 'GitHub', url: 'https://github.com/zhihaoevans', icon: Github }
 ]
 
 const quickLinks = [

@@ -240,11 +240,11 @@ const updateSEO = () => {
       description: article.value.excerpt,
       keywords: `${article.value.tags.join(',')},${article.value.category},博客文章`,
       image: article.value.coverImage,
-      url: `/blog/${article.value.slug}`,
+      url: `/#/blog/${article.value.slug}`,
       type: 'article',
       publishedTime: article.value.publishedAt,
       modifiedTime: article.value.updatedAt,
-      author: '张志豪',
+      author: 'xzh',
       section: article.value.category,
       tags: article.value.tags
     })

@@ -16,21 +16,21 @@ export interface SEOOptions {
 
 export function useSEO(options: SEOOptions = {}) {
   const {
-    title = '张志豪的个人博客',
-    description = '分享前端开发、技术见解和项目经验',
-    keywords = '前端开发,Vue.js,React,TypeScript,个人博客,技术分享',
-    image = '/images/og-image.jpg',
+    title = 'xzh · Dev Notes',
+    description = 'Linux、C/C++、网络工程与 AI 独立开发实践',
+    keywords = 'Linux,C++,DPDK,AI辅助开发,独立开发,开源项目',
+    image = 'https://avatars.githubusercontent.com/u/55485233?v=4',
     url = 'https://zhihaoevans.github.io',
     type = 'website',
     publishedTime,
     modifiedTime,
-    author = '张志豪',
+    author = 'xzh',
     section,
     tags = []
   } = options
 
-  const fullTitle = title === '张志豪的个人博客' ? title : `${title} - 张志豪的个人博客`
-  const fullUrl = url.startsWith('http') ? url : `https://zhihaoevans.github.io${url}`
+  const fullTitle = title === 'xzh · Dev Notes' ? title : `${title} - xzh · Dev Notes`
+  const fullUrl = url.startsWith('http') ? url : `https://zhihaoevans.github.io${url === '/' || url.startsWith('/#/') ? url : '/#' + url}`
   const fullImage = image.startsWith('http') ? image : `https://zhihaoevans.github.io${image}`
 
   const meta = [
@@ -44,10 +44,10 @@ export function useSEO(options: SEOOptions = {}) {
     { property: 'og:description', content: description },
     { property: 'og:image', content: fullImage },
     { property: 'og:url', content: fullUrl },
-    { property: 'og:site_name', content: '张志豪的个人博客' },
+    { property: 'og:site_name', content: 'xzh · Dev Notes' },
     
     // Twitter
-    { name: 'twitter:card', content: 'summary_large_image' },
+    { name: 'twitter:card', content: 'summary' },
     { name: 'twitter:title', content: fullTitle },
     { name: 'twitter:description', content: description },
     { name: 'twitter:image', content: fullImage },
@@ -84,12 +84,12 @@ export function generateStructuredData(type: 'website' | 'article' | 'person', d
       return {
         '@context': 'https://schema.org',
         '@type': 'WebSite',
-        name: '张志豪的个人博客',
-        description: '分享前端开发、技术见解和项目经验',
+        name: 'xzh · Dev Notes',
+        description: 'Linux、C/C++、网络工程与 AI 独立开发实践',
         url: baseUrl,
         author: {
           '@type': 'Person',
-          name: '张志豪',
+          name: 'xzh',
           url: baseUrl
         }
       }
@@ -100,22 +100,22 @@ export function generateStructuredData(type: 'website' | 'article' | 'person', d
         '@type': 'BlogPosting',
         headline: data.title,
         description: data.excerpt,
-        image: data.coverImage ? `${baseUrl}${data.coverImage}` : `${baseUrl}/images/og-image.jpg`,
+        image: data.coverImage ? (data.coverImage.startsWith('http') ? data.coverImage : `${baseUrl}${data.coverImage}`) : 'https://avatars.githubusercontent.com/u/55485233?v=4',
         datePublished: data.publishedAt,
         dateModified: data.updatedAt || data.publishedAt,
         author: {
           '@type': 'Person',
-          name: '张志豪',
+          name: 'xzh',
           url: baseUrl
         },
         publisher: {
           '@type': 'Person',
-          name: '张志豪',
+          name: 'xzh',
           url: baseUrl
         },
         mainEntityOfPage: {
           '@type': 'WebPage',
-          '@id': `${baseUrl}/blog/${data.slug}`
+          '@id': `${baseUrl}/#/blog/${data.slug}`
         },
         keywords: data.tags?.join(', '),
         articleSection: data.category
@@ -129,7 +129,7 @@ export function generateStructuredData(type: 'website' | 'article' | 'person', d
         jobTitle: data.title,
         description: data.bio,
         url: baseUrl,
-        image: data.avatar ? `${baseUrl}${data.avatar}` : undefined,
+        image: data.avatar ? (data.avatar.startsWith('http') ? data.avatar : `${baseUrl}${data.avatar}`) : undefined,
         sameAs: data.social ? Object.values(data.social).filter(Boolean) : [],
         knowsAbout: data.expertise || [],
         alumniOf: data.education?.map((edu: any) => ({

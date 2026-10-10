@@ -1,9 +1,27 @@
-# Vue 3 + TypeScript + Vite
+# xzh · Dev Notes
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+个人开发者网站，展示 Linux / C++ 工程方向、公开仓库与技术笔记。
 
-Learn more about the recommended Project Setup and IDE Support in the [Vue Docs TypeScript Guide](https://vuejs.org/guide/typescript/overview.html#project-setup).
+- 网站：https://zhihaoevans.github.io/
+- 项目展示：https://zhihaoevans.github.io/#/projects
+- 关于：https://zhihaoevans.github.io/#/about
+- 技术栈：Vue 3、TypeScript、Vite、Tailwind CSS
 
+## 本地开发
+
+```bash
+npm ci
+npm run dev
+npm run build
+npm run preview
+```
+
+## 内容维护
+
+- `public/data/profile.json`：个人介绍与技能；未知经历、学历和联系方式不填写。
+- `public/data/projects.json`：公开仓库与项目链接。
+- `public/data/articles.json`：文章列表及正文；已有正文直接读取，无正文时加载 `public/articles/<slug>.md`。
+- 技能 `level`、项目日期和演示链接可以省略；不显示无依据的百分比与日期。
 
 ## GitHub Pages 部署
 
@@ -21,5 +39,4 @@ Learn more about the recommended Project Setup and IDE Support in the [Vue Docs 
 在 Actions 中确认部署成功后，检查首页、JS/CSS 请求和浏览器控制台。
 本地验证：`npm ci && npm run build`，然后 `npm run preview`。
 
-当前使用 history 路由，GitHub Pages 不提供 SPA 路由重写，直接访问或刷新
-`/blog` 等子路径仍可能返回 404；这与首页空白问题是独立问题。
+使用 hash 路由，例如 `/#/projects` 和 `/#/blog`，以支持 GitHub Pages 上直接访问、刷新和分享子页面。

@@ -58,8 +58,12 @@ export async function getArticleBySlug(slug: string): Promise<Article | null> {
       return null;
     }
     
+    // JSON 中已有正文时直接使用，避免请求不存在的 Markdown 文件。
+    if (article.content) return article;
+
     // 加载文章内容
     const response = await fetch(`/articles/${slug}.md`);
+    if (!response.ok) throw new Error(`Article request failed: ${response.status}`);
     const content = await response.text();
     
     return {
@@ -84,7 +88,7 @@ export function useData() {
   );
   
   const recentArticles = computed(() => 
-    articles.value
+    [...articles.value]
       .sort((a, b) => new Date(b.publishDate).getTime() - new Date(a.publishDate).getTime())
       .slice(0, 5)
   );

@@ -4,7 +4,7 @@
     <div class="text-center mb-12">
       <h1 class="text-4xl font-bold text-gray-900 mb-4">项目展示</h1>
       <p class="text-lg text-gray-600 max-w-2xl mx-auto">
-        这里展示了我参与开发的一些项目，涵盖了前端、后端、移动端等多个领域
+        从公开仓库中精选：多语言学习、开发工具、网络协议资料和个人网站
       </p>
     </div>
 
@@ -64,13 +64,13 @@
     <div class="mt-16 bg-gradient-to-r from-blue-500 to-purple-600 rounded-2xl p-8 text-white">
       <div class="text-center mb-8">
         <h2 class="text-2xl font-bold mb-2">项目统计</h2>
-        <p class="text-blue-100">我的开发历程数据</p>
+        <p class="text-blue-100">当前展示的公开仓库</p>
       </div>
       
       <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
         <div class="text-center">
           <div class="text-3xl font-bold mb-2">{{ projects.length }}</div>
-          <div class="text-blue-100">总项目数</div>
+          <div class="text-blue-100">展示仓库数</div>
         </div>
         <div class="text-center">
           <div class="text-3xl font-bold mb-2">{{ categories.length }}</div>
@@ -129,7 +129,7 @@ const filteredProjects = computed(() => {
 })
 
 const openSourceCount = computed(() => {
-  return projects.value.filter(p => p.github).length
+  return projects.value.filter(p => p.githubUrl).length
 })
 
 const allTechnologies = computed(() => {

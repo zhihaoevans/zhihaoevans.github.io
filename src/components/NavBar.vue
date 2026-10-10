@@ -10,7 +10,7 @@
           <div class="w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
             <span class="text-white font-bold text-sm">Z</span>
           </div>
-          <span>ZhiHao's Blog</span>
+          <span>xzh · Dev Notes</span>
         </router-link>
 
         <!-- Desktop Navigation -->

@@ -13,7 +13,7 @@
       </div>
       
       <!-- 项目状态标签 -->
-      <div class="absolute top-4 left-4">
+      <div v-if="project.status" class="absolute top-4 left-4">
         <span
           :class="[
             'px-3 py-1 text-xs font-medium rounded-full',
@@ -96,7 +96,7 @@
           </a>
         </div>
 
-        <div class="text-sm text-gray-500">
+        <div v-if="project.startDate" class="text-sm text-gray-500">
           {{ formatDate(project.startDate) }}
         </div>
       </div>

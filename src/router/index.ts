@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHashHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import BlogView from '../views/BlogView.vue'
 import ArticleView from '../views/ArticleView.vue'
@@ -7,7 +7,7 @@ import ProjectsView from '../views/ProjectsView.vue'
 import NotFoundView from '../views/NotFoundView.vue'
 
 const router = createRouter({
-  history: createWebHistory(import.meta.env.BASE_URL),
+  history: createWebHashHistory(import.meta.env.BASE_URL),
   routes: [
     {
       path: '/',
@@ -71,7 +71,7 @@ const router = createRouter({
 router.beforeEach((to, from, next) => {
   const title = to.meta.title as string
   if (title) {
-    document.title = `${title} - 个人博客`
+    document.title = `${title} - xzh · Linux / C++ & AI`
   }
   next()
 })

@@ -225,9 +225,9 @@ watch([searchQuery, selectedCategory, selectedTags], () => {
 // SEO设置
 useSEO({
   title: '博客',
-  description: '张志豪的技术博客 - 分享前端开发经验、技术见解和最佳实践',
-  keywords: '技术博客,前端开发,Vue.js,React,TypeScript,JavaScript,编程技巧',
-  url: '/blog'
+  description: 'xzh 的技术笔记 - 记录编程学习与工程实践',
+  keywords: 'Linux,C++,编程学习,技术笔记,工程实践',
+  url: '/#/blog'
 })
 
 onMounted(async () => {
