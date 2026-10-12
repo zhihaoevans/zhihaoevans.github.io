@@ -1,4 +1,4 @@
-# xzh · Dev Notes
+# Mike · Dev Notes
 
 个人开发者网站，展示 Linux / C++ 工程方向、公开仓库与技术笔记。
 
