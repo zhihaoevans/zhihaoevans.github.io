@@ -1,7 +1,7 @@
 <template>
   <header class="site-header">
     <nav class="site-shell nav-layout" aria-label="主导航">
-      <router-link to="/" class="brand"><span class="brand-mark">&lt;/&gt;</span><span>xzh<span class="brand-sub"> / dev notes</span></span></router-link>
+      <router-link to="/" class="brand"><span class="brand-mark">&lt;/&gt;</span><span>Mike<span class="brand-sub"> / dev notes</span></span></router-link>
       <div class="desktop-links"><router-link v-for="item in items" :key="item.path" :to="item.path" :aria-current="$route.path === item.path ? 'page' : undefined" class="nav-link">{{ item.name }}</router-link></div>
       <div class="nav-actions">
         <button @click="toggleTheme" class="icon-button" :aria-label="isDark ? '切换为浅色主题' : '切换为深色主题'" :title="isDark ? '切换为浅色主题' : '切换为深色主题'" :aria-pressed="isDark"><Sun v-if="isDark" :size="19" /><Moon v-else :size="19" /></button>
