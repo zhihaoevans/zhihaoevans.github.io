@@ -246,7 +246,7 @@ const updateSEO = () => {
       type: 'article',
       publishedTime: article.value.publishedAt,
       modifiedTime: article.value.updatedAt,
-      author: 'xzh',
+      author: 'Mike',
       section: article.value.category,
       tags: article.value.tags
     })
