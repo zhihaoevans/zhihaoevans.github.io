@@ -16,7 +16,7 @@ export interface SEOOptions {
 
 export function useSEO(options: SEOOptions = {}) {
   const {
-    title = 'xzh · Dev Notes',
+    title = 'Mike · Dev Notes',
     description = 'Linux、C/C++、网络工程与 AI 独立开发实践',
     keywords = 'Linux,C++,DPDK,AI辅助开发,独立开发,开源项目',
     image = 'https://avatars.githubusercontent.com/u/55485233?v=4',
@@ -24,12 +24,12 @@ export function useSEO(options: SEOOptions = {}) {
     type = 'website',
     publishedTime,
     modifiedTime,
-    author = 'xzh',
+    author = 'Mike',
     section,
     tags = []
   } = options
 
-  const fullTitle = title === 'xzh · Dev Notes' ? title : `${title} - xzh · Dev Notes`
+  const fullTitle = title === 'Mike · Dev Notes' ? title : `${title} - Mike · Dev Notes`
   const fullUrl = url.startsWith('http') ? url : `https://zhihaoevans.github.io${url === '/' || url.startsWith('/#/') ? url : '/#' + url}`
   const fullImage = image.startsWith('http') ? image : `https://zhihaoevans.github.io${image}`
 
@@ -44,7 +44,7 @@ export function useSEO(options: SEOOptions = {}) {
     { property: 'og:description', content: description },
     { property: 'og:image', content: fullImage },
     { property: 'og:url', content: fullUrl },
-    { property: 'og:site_name', content: 'xzh · Dev Notes' },
+    { property: 'og:site_name', content: 'Mike · Dev Notes' },
     
     // Twitter
     { name: 'twitter:card', content: 'summary' },
@@ -84,12 +84,12 @@ export function generateStructuredData(type: 'website' | 'article' | 'person', d
       return {
         '@context': 'https://schema.org',
         '@type': 'WebSite',
-        name: 'xzh · Dev Notes',
+        name: 'Mike · Dev Notes',
         description: 'Linux、C/C++、网络工程与 AI 独立开发实践',
         url: baseUrl,
         author: {
           '@type': 'Person',
-          name: 'xzh',
+          name: 'Mike',
           url: baseUrl
         }
       }
@@ -105,12 +105,12 @@ export function generateStructuredData(type: 'website' | 'article' | 'person', d
         dateModified: data.updatedAt || data.publishedAt,
         author: {
           '@type': 'Person',
-          name: 'xzh',
+          name: 'Mike',
           url: baseUrl
         },
         publisher: {
           '@type': 'Person',
-          name: 'xzh',
+          name: 'Mike',
           url: baseUrl
         },
         mainEntityOfPage: {
