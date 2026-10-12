@@ -227,7 +227,7 @@ watch([searchQuery, selectedCategory, selectedTags], () => {
 // SEO设置
 useSEO({
   title: '博客',
-  description: 'xzh 的技术笔记 - 记录编程学习与工程实践',
+  description: 'Mike 的技术笔记 - 记录编程学习与工程实践',
   keywords: 'Linux,C++,编程学习,技术笔记,工程实践',
   url: '/#/blog'
 })
